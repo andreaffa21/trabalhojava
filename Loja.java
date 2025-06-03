@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-// Classe que representa a loja, armazenando uma coleção de bebidas
+
 public class Loja {
-    private ArrayList<Bebida> bebidas = new ArrayList<>();  // Coleção de bebidas (associação)
+    private ArrayList<Bebida> bebidas = new ArrayList<>();  
 
     // Adiciona uma bebida à lista
     public void adicionarBebida(Bebida bebida) {
@@ -12,12 +12,12 @@ public class Loja {
     // Lista todas as bebidas com seus detalhes e descontos
     public void listarBebidas() {
         for (Bebida b : bebidas) {
-            b.exibirDetalhes();  // Chamada polimórfica: pode ser BebidaFria ou BebidaQuente
+            b.exibirDetalhes();  // chamada poliformica, tanto quente quanto gelada
             System.out.println("Desconto: R$" + b.calcularDesconto());
         }
     }
 
-    // Calcula o total de descontos acumulados
+    // calcula total de descontos
     public double calcularTotalDescontos() {
         double total = 0;
         for (Bebida b : bebidas) {
@@ -26,7 +26,7 @@ public class Loja {
         return total;
     }
 
-    // Retorna a lista de bebidas (usado na interface gráfica)
+    // Retorna a lista de bebidas
     public ArrayList<Bebida> getBebidas() {
         return bebidas;
     }
