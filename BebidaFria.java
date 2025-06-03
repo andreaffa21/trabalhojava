@@ -10,7 +10,7 @@
             this.tamanho = tamanho;
         }
 
-        // Implementação do método abstrato: dá 10% de desconto se estive
+        // Implementação do método abstrato: dá 10% de desconto se estiver gelada
         @Override
         public double calcularDesconto() {
             return (gelada)  getPreco() * 0.10 : 0;
