@@ -12,7 +12,7 @@ public abstract class Bebida {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    // Método abstrato
+    // Método abstrato: adicionar subclasses
     public abstract double calcularDesconto();
 
     // Método concreto: exibe detalhes da bebida
@@ -20,7 +20,7 @@ public abstract class Bebida {
         System.out.println("Nome: " + nome + ", Preço: R$" + preco + ", Estoque: " + quantidadeEstoque);
     }
 
-    // Métodos de acesso (getters)
+    // Métodos de acesso get
     public String getNome() { return nome; }
     public double getPreco() { return preco; }
     public int getQuantidadeEstoque() { return quantidadeEstoque; }
