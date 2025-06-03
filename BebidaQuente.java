@@ -1,7 +1,7 @@
-// Subclasse que representa bebidas quentes (ex: café, chá)
+
 public class BebidaQuente extends Bebida {
-    private int temperaturaIdeal;  // Temperatura ideal de consumo
-    private boolean contemCafeina; // Se contém cafeína
+    private int temperaturaIdeal;  
+    private boolean contemCafeina; 
 
     // Construtor
     public BebidaQuente(String nome, double preco, int quantidadeEstoque, int temperaturaIdeal, boolean contemCafeina) {
@@ -10,13 +10,13 @@ public class BebidaQuente extends Bebida {
         this.contemCafeina = contemCafeina;
     }
 
-    // Implementação do método abstrato: dá 5% de desconto se o estoque for grande
+    // meotod abstrato(melhorar): dá 5% de desconto se o estoque for grande
     @Override
     public double calcularDesconto() {
         return (getQuantidadeEstoque() > 50) ? getPreco() * 0.05 : 0;
     }
 
-    // Sobrescreve exibirDetalhes para incluir detalhes específicos de bebida quente
+    // Sobrescreve a chada de exibição de detalhes para incluir detalhes específicos de bebida quente
     @Override
     public void exibirDetalhes() {
         super.exibirDetalhes();
