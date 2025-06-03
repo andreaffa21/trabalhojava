@@ -15,7 +15,7 @@ public class LojaInterface extends JFrame {
     public LojaInterface(Loja loja) {
         this.loja = loja; // Armazena a instância da loja
 
-        // Configurações da janela principal
+        // Configurações da janela
         setTitle("Loja de Bebidas");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
