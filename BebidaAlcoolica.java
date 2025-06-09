@@ -8,6 +8,7 @@ public class BebidaAlcoolica extends Produto {
 
     public String getTemperatura() { return temperatura; }
 
+    //Sobre escreve a função exibirInfo();
     @Override
     public void exibirInfo() {
         System.out.println("Alcoólica (" + temperatura + "): " + nome + " - R$" + preco + " - " + volume + "ml");
