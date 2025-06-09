@@ -42,6 +42,7 @@ public class LojaDeBebidas {
         estoque.add(new BebidaNaoAlcoolica("Achocolatado", 4.20, 300, "Ambiente"));
     }
 
+    //classe Arraylist 
     public ArrayList<Produto> listarBebidas(String tipo, String temperatura) {
         ArrayList<Produto> listaFiltrada = new ArrayList<>();
         for (Produto p : estoque) {
@@ -54,13 +55,15 @@ public class LojaDeBebidas {
                 }
             }
         }
-        for (int i = 0; i < listaFiltrada.size(); i++) {
+    // exibi a informações em forma de lista ("alcoolica", "Gelada");
+        for (int i = 0; i < listaFiltrada.size(); i++) { 
             System.out.print(i + " - ");
             listaFiltrada.get(i).exibirInfo();
         }
         return listaFiltrada;
     }
 
+//Oferece escolha da temperatura da bebida
     public String selecionarTemperaturaPorIndice(Scanner sc) {
         System.out.println("Selecione a temperatura da bebida:");
         System.out.println("1 - Gelada");
