@@ -1,3 +1,4 @@
+// REQUISITO: Herança (estende a classe Produto)
 public class BebidaAlcoolica extends Produto {
     private String temperatura;
 
@@ -8,7 +9,6 @@ public class BebidaAlcoolica extends Produto {
 
     public String getTemperatura() { return temperatura; }
 
-    //Sobre escreve a função exibirInfo();
     @Override
     public void exibirInfo() {
         System.out.println("Alcoólica (" + temperatura + "): " + nome + " - R$" + preco + " - " + volume + "ml");
