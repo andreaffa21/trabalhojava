@@ -1,10 +1,12 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap; //colecao de objetos
 import java.util.Map;
 import java.util.Scanner;
 
 
 public class LojaDeBebidas {
+
+    //colecao de objetos
     private ArrayList<Produto> catalogo;
     private Map<String, Integer> quantidadesEstoque;
 
@@ -13,7 +15,7 @@ public class LojaDeBebidas {
         quantidadesEstoque = new HashMap<>();
         carregarProdutos();
     }
-
+//associação entre bebidas  e produtos
     private void carregarProdutos() {
         adicionarProdutoAoEstoque(new BebidaAlcoolica("Cerveja", 5.99, 350, "Gelada"), 50);
         adicionarProdutoAoEstoque(new BebidaAlcoolica("Vinho", 29.99, 750, "Ambiente"), 20);
@@ -41,6 +43,7 @@ public class LojaDeBebidas {
     public ArrayList<Produto> listarBebidas(String tipo, String temperatura) {
         ArrayList<Produto> listaFiltrada = new ArrayList<>();
         for (Produto p : catalogo) {
+            //chamada polimorfica
             if ((tipo.equals("alcoolica") && p instanceof BebidaAlcoolica) ||
                 (tipo.equals("naoalcoolica") && p instanceof BebidaNaoAlcoolica)) {
                 if (p instanceof BebidaAlcoolica ba && ba.getTemperatura().equalsIgnoreCase(temperatura)) {
@@ -52,7 +55,7 @@ public class LojaDeBebidas {
         }
         for (int i = 0; i < listaFiltrada.size(); i++) {
             System.out.print(i + " - ");
-            listaFiltrada.get(i).exibirInfo(); // REQUISITO: Chamada Polimórfica
+            listaFiltrada.get(i).exibirInfo(); //Chamada Polimórfica
             System.out.println("    (Estoque: " + quantidadesEstoque.get(listaFiltrada.get(i).getNome()) + ")");
         }
         return listaFiltrada;
