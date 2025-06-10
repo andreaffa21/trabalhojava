@@ -1,4 +1,4 @@
-// REQUISITO: Herança 
+// Herança 
 public class BebidaNaoAlcoolica extends Produto {
     private String temperatura;
 
