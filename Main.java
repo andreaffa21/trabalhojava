@@ -71,7 +71,7 @@ public class Main {
 
                         } catch (EstoqueInsu e) {
                             System.err.println("--------------------------------------------------------");
-                            System.err.println("ERRO: " + e.getMessage());
+                            System.err.println("" + e.getMessage());
                             System.err.println("--------------------------------------------------------");
                         }
 
