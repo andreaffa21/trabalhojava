@@ -8,6 +8,9 @@ public class Main {
         ArrayList<Produto> carrinho = new ArrayList<>();
         ArrayList<Integer> quantidades = new ArrayList<>();
 
+        ProdutoCSV.AddProduto(p);  //add produto na lista
+        ProdutoCSV.ListarProduto(); //le produto da lista
+
         System.out.println("=== Bem-vindo à Distribuidora JavaBebidas ===");
         System.out.print("Digite seu nome: ");
         String nome = sc.nextLine();
