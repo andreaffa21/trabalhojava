@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-// Classe principal
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -17,6 +16,8 @@ public class Main {
         sc.nextLine();
 
         Cliente cliente = new Cliente(nome, idade);
+        System.out.println("Cliente cadastrado com sucesso!");
+        System.out.println(cliente);
 
         int opcao;
         do {
@@ -40,8 +41,8 @@ public class Main {
                     }
 
                     String temp = loja.selecionarTemperaturaPorIndice(sc);
-
                     ArrayList<Produto> lista = loja.listarBebidas(tipo, temp);
+
                     if (lista.isEmpty()) {
                         System.out.println("Nenhuma bebida disponível nessa categoria.");
                         break;
@@ -56,9 +57,20 @@ public class Main {
                         System.out.print("Quantidade: ");
                         int qtd = sc.nextInt();
                         sc.nextLine();
-                        carrinho.add(selecionado);
-                        quantidades.add(qtd);
-                        System.out.println(qtd + "x " + selecionado.getNome() + " adicionados ao carrinho.");
+
+                        try {
+                            loja.verificarDisponibilidade(selecionado, qtd);
+                            
+                            carrinho.add(selecionado);
+                            quantidades.add(qtd);
+                            System.out.println(qtd + "x " + selecionado.getNome() + " adicionados ao carrinho.");
+
+                        } catch (EstoqueInsu e) {
+                            System.err.println("--------------------------------------------------------");
+                            System.err.println("ERRO: " + e.getMessage());
+                            System.err.println("--------------------------------------------------------");
+                        }
+
                     } else {
                         System.out.println("Número inválido.");
                     }
