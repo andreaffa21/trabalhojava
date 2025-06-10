@@ -1,7 +1,6 @@
 // REQUISITO: Classe Abstrata 
 // REQUISITO: Método Abstrato 
 // REQUISITO: Encapsulamento
-import java.io.Serializable;
 
 public abstract class Produto implements Serializable {
     protected String nome;
