@@ -1,16 +1,14 @@
-import java.util.Scanner;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        //coleção
-        Scanner sc = new Scanner(System.in);  
+        Scanner sc = new Scanner(System.in);
         LojaDeBebidas loja = new LojaDeBebidas();
         ArrayList<Produto> carrinho = new ArrayList<>();
         ArrayList<Integer> quantidades = new ArrayList<>();
-
-        ProdutoCSV.AddProduto(p);  //add produto na lista
-        ProdutoCSV.ListarProduto(); //le produto da lista
 
         System.out.println("=== Bem-vindo à Distribuidora JavaBebidas ===");
         System.out.print("Digite seu nome: ");
@@ -30,6 +28,7 @@ public class Main {
             System.out.println("2 - Escolher bebidas não alcoólicas");
             System.out.println("3 - Ver carrinho");
             System.out.println("4 - Finalizar compra");
+            System.out.println("5 - Cadastrar novo produto");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
             opcao = sc.nextInt();
@@ -64,14 +63,14 @@ public class Main {
 
                         try {
                             loja.verificarDisponibilidade(selecionado, qtd);
-                            
+
                             carrinho.add(selecionado);
                             quantidades.add(qtd);
                             System.out.println(qtd + "x " + selecionado.getNome() + " adicionados ao carrinho.");
 
                         } catch (EstoqueInsu e) {
                             System.err.println("--------------------------------------------------------");
-                            System.err.println("" + e.getMessage());
+                            System.err.println("ERRO: " + e.getMessage());
                             System.err.println("--------------------------------------------------------");
                         }
 
@@ -103,6 +102,10 @@ public class Main {
                     System.out.println("Compra finalizada. Total a pagar: R$" + totalFinal);
                     carrinho.clear();
                     quantidades.clear();
+                    break;
+
+                case 5:
+                    loja.cadastrarNovoProduto(sc);
                     break;
 
                 case 0:

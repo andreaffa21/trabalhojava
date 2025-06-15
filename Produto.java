@@ -2,7 +2,8 @@
 // REQUISITO: Método Abstrato 
 // REQUISITO: Encapsulamento
 
-public abstract class Produto implements Serializable {
+public abstract class Produto {
+
     protected String nome;
     protected double preco;
     protected int volume;
@@ -13,9 +14,17 @@ public abstract class Produto implements Serializable {
         this.volume = volume;
     }
 
-    public String getNome() { return nome; }
-    public double getPreco() { return preco; }
-    public int getVolume() { return volume; }
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
 
     public abstract void exibirInfo();
 }

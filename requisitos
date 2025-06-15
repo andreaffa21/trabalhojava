@@ -44,3 +44,12 @@ Criação: EstoqueInsuficienteException.java herda de Exception.
 Lançamento (throw): No método verificarDisponibilidade da classe LojaDeBebidas.
 
 Captura (try-catch): No case 2 do switch dentro da classe Main.java, tratando o erro de forma controlada e informando o usuário.
+
+Só para não perder...
+private void carregarProdutos() {
+        adicionarProdutoAoEstoque(new BebidaAlcoolica("Cerveja", 5.99, 350, "Gelada"), 50);
+        adicionarProdutoAoEstoque(new BebidaAlcoolica("Vinho", 29.99, 750, "Ambiente"), 20);
+        adicionarProdutoAoEstoque(new BebidaAlcoolica("Vodka", 19.99, 500, "Gelada"), 30);
+        adicionarProdutoAoEstoque(new BebidaNaoAlcoolica("Refrigerante", 4.50, 600, "Gelada"), 100);
+        adicionarProdutoAoEstoque(new BebidaNaoAlcoolica("Água", 2.50, 500, "Gelada"), 150);
+        adicionarProdutoAoEstoque(new BebidaNaoAlcoolica("Suco Natural", 6.00, 300, "Ambiente"), 40);

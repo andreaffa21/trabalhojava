@@ -1,72 +1,73 @@
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ProdutoCSV {
+
     private static String nomeArquivo = "./dados/Produtos.csv";
 
-    public static void AddProduto(Produto p){
+    public static void AddProduto(Produto p, String tipo, int quantidade) {
         try {
-            //verifica se o arquivo existe
             boolean arquivoExiste = new File(nomeArquivo).exists();
-
-            //abre o escritor para adicionar os dados ao arquivo
             FileWriter escritor = new FileWriter(nomeArquivo, StandardCharsets.ISO_8859_1, true);
-             if (!arquivoExiste){
-                escritor.write("Nome;Preço;Volume\n");
-             }
 
-             escritor.write(p.getNome() + ";" + p.getPreco() + ";" + p.getVolume() + "\n" );
-             
-             escritor.flush();
-             //fecha o recurso de escrita
-             escritor.close();
+            if (!arquivoExiste) {
+                escritor.write("Nome;Preço;Volume;Temperatura;Tipo;Quantidade\n");
+            }
+
+            String linha = p.getNome() + ";" + p.getPreco() + ";" + p.getVolume() + ";";
+
+            if (p instanceof BebidaAlcoolica) {
+                linha += ((BebidaAlcoolica) p).getTemperatura() + ";Alcoolica;";
+            } else if (p instanceof BebidaNaoAlcoolica) {
+                linha += ((BebidaNaoAlcoolica) p).getTemperatura() + ";NaoAlcoolica;";
+            }
+
+            linha += quantidade + "\n";
+            escritor.write(linha);
+            escritor.flush();
+            escritor.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    //metodo para listar produtos dp arquivo CSV
-     public static ArrayList<Produto> ListarProduto(){
+
+    public static ArrayList<Produto> ListarProduto(LojaDeBebidas loja) {
         ArrayList<Produto> lista = new ArrayList<>();
-        try {
-            //abrir o leitor
-            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+        try (BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo))) {
             String linha;
             boolean primeiraLinha = true;
 
-            while ((linha = leitor .readLine())!=null){
-                if (primeiraLinha){
-                    primeiralinha = false;
+            while ((linha = leitor.readLine()) != null) {
+                if (primeiraLinha) {
+                    primeiraLinha = false;
                     continue;
                 }
-                //Dividir a linha em partes usando o ;
 
                 String[] partes = linha.split(";");
-
                 String nome = partes[0];
                 double preco = Double.parseDouble(partes[1]);
-                int volume = int.parseInt(partes[2]);
+                int volume = Integer.parseInt(partes[2]);
+                String temperatura = partes[3];
+                String tipo = partes[4];
+                int quantidade = Integer.parseInt(partes[5]);
 
-                //Criar objeto Produto
-                Produto p = new Produto(nome, preco, valume);
+                Produto p;
+                if (tipo.equalsIgnoreCase("Alcoolica")) {
+                    p = new BebidaAlcoolica(nome, preco, volume, temperatura);
+                } else {
+                    p = new BebidaNaoAlcoolica(nome, preco, volume, temperatura);
+                }
 
-                //add na lista
                 lista.add(p);
-                //imprimir informações da lista
-                System.out.print("Nome: "+ nome + "- Preço: " + preco + "- Volume: " + volume);
+                loja.adicionarProdutoAoEstoque(p, quantidade); // adiciona ao estoque da loja
             }
-            leitor.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
         return lista;
-     }
+    }
 }
-
