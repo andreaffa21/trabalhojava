@@ -52,7 +52,7 @@ public class Main {
                     }
 
                     System.out.print("Digite o número da bebida que deseja: ");
-                    int index = sc.nextInt();
+                    int index = sc.nextInt() - 1; // Subtrai 1, porque lista começa do 1
                     sc.nextLine();
 
                     if (index >= 0 && index < lista.size()) {
