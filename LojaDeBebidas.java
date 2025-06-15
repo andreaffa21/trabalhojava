@@ -86,7 +86,8 @@ public class LojaDeBebidas {
                 }
             }
         }
-        for (int i = 0; i < listaFiltrada.size(); i++) {
+        // Sempre faz escolha - 1 porque, internamente, a lista ainda começa em 0, mas o usuário enxerga ela começando em 1.
+        for (int i = 0; i < listaFiltrada.size(); i++) { 
             System.out.print((i + 1) + " - ");
             listaFiltrada.get(i).exibirInfo();
             System.out.println("    (Estoque: " + quantidadesEstoque.get(listaFiltrada.get(i).getNome()) + ")");
