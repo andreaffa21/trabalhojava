@@ -87,8 +87,8 @@ public class LojaDeBebidas {
             }
         }
         for (int i = 0; i < listaFiltrada.size(); i++) {
-            System.out.print(i + " - ");
-            listaFiltrada.get(i).exibirInfo(); // Chamada polimórfica
+            System.out.print((i + 1) + " - ");
+            listaFiltrada.get(i).exibirInfo();
             System.out.println("    (Estoque: " + quantidadesEstoque.get(listaFiltrada.get(i).getNome()) + ")");
         }
         return listaFiltrada;
