@@ -5,15 +5,19 @@ import java.util.ArrayList;
 
 public class ProdutoCSV {
 
-    private static String nomeArquivo = "./dados/Produtos.csv";
+    private static String nomeArquivo = "dados.csv";
 
     public static void AddProduto(Produto p, String tipo, int quantidade) {
         try {
-            boolean arquivoExiste = new File(nomeArquivo).exists();
+            File arquivo = new File(nomeArquivo);
+            boolean arquivoExiste = arquivo.exists();
+
             FileWriter escritor = new FileWriter(nomeArquivo, StandardCharsets.ISO_8859_1, true);
 
             if (!arquivoExiste) {
                 escritor.write("Nome;Preço;Volume;Temperatura;Tipo;Quantidade\n");
+            } else if (arquivo.length() > 0) {
+                escritor.write("\n"); // Garante quebra de linha
             }
 
             String linha = p.getNome() + ";" + p.getPreco() + ";" + p.getVolume() + ";";
@@ -24,7 +28,7 @@ public class ProdutoCSV {
                 linha += ((BebidaNaoAlcoolica) p).getTemperatura() + ";NaoAlcoolica;";
             }
 
-            linha += quantidade + "\n";
+            linha += quantidade;
             escritor.write(linha);
             escritor.flush();
             escritor.close();
@@ -46,7 +50,16 @@ public class ProdutoCSV {
                     continue;
                 }
 
+                if (linha.trim().isEmpty()) {
+                    continue; // Pula linha em branco
+                }
+
                 String[] partes = linha.split(";");
+                if (partes.length < 6) {
+                    System.out.println("Linha inválida: " + linha);
+                    continue; // Ignora linha com menos campos do que o esperado
+                }
+
                 String nome = partes[0];
                 double preco = Double.parseDouble(partes[1]);
                 int volume = Integer.parseInt(partes[2]);
@@ -62,7 +75,7 @@ public class ProdutoCSV {
                 }
 
                 lista.add(p);
-                loja.adicionarProdutoAoEstoque(p, quantidade); // adiciona ao estoque da loja
+                loja.adicionarProdutoAoEstoque(p, quantidade);
             }
 
         } catch (IOException e) {
